@@ -19,17 +19,24 @@ void delay(int milliseconds)
 		now = clock();
 }
 
+void touch_4_MB(int* p) {
+	for (int j = 0; j < 1024; j++) {
+		p[j * 1024 + 100] = 42;
+	}
+}
+
 void foo(int *i) {
-	int time = 60;
+	int speed = 60;
 	int amplitude = 4;
 	if (*i < 360) {
-		int* p = calloc(4, MB);
-		delay(((int)(cos(*i * PI / 180) * 1000) + 1000) / time);
+		int* p = malloc(amplitude * MB);
+		touch_4_MB(p);
+		delay(((int)(cos(*i * PI / 180) * 1000) + 1000) / speed);
 		*i += 1;
 		foo(i);
 		free(p);
 		*i -= 1;
-		delay(((int)(cos(*i * PI / 180) * 1000) + 1000) / time);
+		delay(((int)(cos(*i * PI / 180) * 1000) + 1000) / speed);
 	}
 }
 
