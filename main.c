@@ -3,9 +3,6 @@
 #include <math.h>
 #include <time.h>
 
-#define PI 3.14159265
-#define MB 1024 * 1024
-
 void foo(int *i);
 
 void delay(int milliseconds)
@@ -26,6 +23,8 @@ void touch_4_MB(int* p) {
 }
 
 void foo(int *i) {
+	int const PI = 3.14159265;
+	int const MB = 1024 * 1024;
 	int speed = 60;
 	int amplitude = 4;
 	if (*i < 360) {
